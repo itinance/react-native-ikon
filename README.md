@@ -54,6 +54,15 @@ export const iconSet = {
 ```
 
 ## How to use:
+Somewhere in your code (e.g. the root component), just register your Iconset:
+```
+import {iconSet} from './iconSet';
+import Ikon from 'react-native-ikon';
+
+Ikon.registerIconSet(iconSet);
+```
+
+In your render-functions:
 ```
 <Ikon name="lessons.openLesson" />
 ```
