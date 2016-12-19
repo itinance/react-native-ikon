@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Image, Platform } from 'react-native';
 
 class Ikon extends Component {
@@ -51,5 +51,13 @@ class Ikon extends Component {
 // assign your personal IconSet with Ikon.registerIconSet()
 var __iconSet = null;
 
+Ikon.propTypes = {
+  name: PropTypes.string.isRequired,
+  style: PropTypes.object,
+  resizeMode: PropTypes.string,
+}
+
+Ikon.defaultProps = {
+}
 
 module.exports = Ikon;
