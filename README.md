@@ -2,9 +2,10 @@
 Simple, generic and flexible json-based icon-management.
 
 This library is NOT to be confused with specific Icon-support-libraries like
-react-native-vector-icons (https://github.com/oblador/react-native-vector-icons).
+[react-native-vector-icons](https://github.com/oblador/react-native-vector-icons).
 
-The purpose is to support individual icons and to apply their style only once.
+The purpose is to support individual icons and to apply their style and size only once
+or once per Icon-group.
 
 Insead of
 ```
@@ -16,10 +17,11 @@ json based object structure:
 <Ikon name="themes.default.lessons"/>
 ```
 
-The render-function will look up an iconSet-structure to pick relevant values
+The render-function of <Ikon> will look up an IconSet-structure to pick relevant values
 like 'width' and 'height' by the name that was passed to the Ikon-component.
 If these attributes are not present, it will traverse up the IconSet-structure
-unless the attribute could be found.
+unless the attribute could be found. This way, nested groups are supported and
+will read inherited values from their parent.
 
 ## Example of an iconSet:
 ```
@@ -53,14 +55,8 @@ export const iconSet = {
 }
 ```
 
-## Installation
-
-```
-npm i react-native-ikon --save
-```
-
 ## How to use:
-Somewhere in your code (e.g. the root component), just register your Iconset:
+Somewhere in the code (e.g. the root component), just register the IconSet:
 ```
 import {iconSet} from './iconSet';
 import Ikon from 'react-native-ikon';
@@ -68,7 +64,7 @@ import Ikon from 'react-native-ikon';
 Ikon.registerIconSet(iconSet);
 ```
 
-In your render-functions:
+In the render-functions:
 ```
 <Ikon name="lessons.openLesson" />
 ```
@@ -83,3 +79,22 @@ It is also possible to specify an icon as "disabled":
 If disabled, it will loop up a specific node in the iconSet with the name "$.disabled"
 and apply all their attributes to the <Image>-component.
 If $disabled was not found, it will default to an opacity of 0.5.
+
+
+## AutoScaling
+
+If the attribute *autoScale* is true, the width and height will be automatically adjusted to the
+screensize in the same way like Facebook [did it in f8app](https://github.com/fbsamples/f8app/blob/master/js/common/F8Text.js#L46).
+
+
+## Properties
+
+The following props are supported being passed into the <Icon>-Tag, where they do
+override any settings in the IconSet-Structure.
+
+- width
+- height
+- [resizeMode](https://facebook.github.io/react-native/docs/image.html#resizemode)
+- autoScale
+- [style](https://facebook.github.io/react-native/docs/image.html#source)
+- [source](https://facebook.github.io/react-native/docs/image.html#source)
