@@ -37,11 +37,11 @@ export const iconSet = {
         $disabled: {
           opacity: 0.6
         },
-        // specific four outbound flights
+        // specific icon
         openLesson: {
           source: require('./img/icon-open.png'),
         },
-        // specific four inbound flights
+        // specific icon 
         closeLesson: {
           source: require('./src/img/icon-close.png'),
         },
