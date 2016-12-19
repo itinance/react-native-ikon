@@ -5,18 +5,16 @@ import { Image, Platform } from 'react-native';
 
 class Ikon extends Component {
 
-  static registerIconSet(iconSet) {
-      __iconSet = iconSet;
-  }
+  constructor(props) {
+    super(props);
 
-  render() {
     const {disabled, name, style} = this.props;
 
     let _style = style ? style : {};
 
     const attr = Ikon.__resolvePropertyByKey(__iconSet, name);
     if(!attr) {
-      console.log('Attributes for Ikon not found!', this.props);
+      throw 'Attributes for Ikon not found!';
       return null;
     }
 
@@ -32,9 +30,23 @@ class Ikon extends Component {
       _style = [..._style, disabledStyle];
     }
 
+    this.state = {
+        style: _style,
+        resizeMode: resizeMode ? resizeMode : IMG_CENTER_MODE,
+        width: attr.width,
+        height: attr.height,
+        source: attr.source,
+    }
+  }
+
+  static registerIconSet(iconSet) {
+      __iconSet = iconSet;
+  }
+
+  render() {
     return (
-      <Image resizeMode={resizeMode ? resizeMode : IMG_CENTER_MODE} width={attr.width} height={attr.height}
-            source={attr.source} style={_style}>
+      <Image resizeMode={this.state.resizeMode} width={this.state.width} height={this.state.height}
+            source={this.state.source} style={this.state.style}>
       </Image>
     )
   }
