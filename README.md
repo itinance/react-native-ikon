@@ -53,6 +53,12 @@ export const iconSet = {
 }
 ```
 
+## Installation
+
+```
+npm i react-native-ikon --save
+```
+
 ## How to use:
 Somewhere in your code (e.g. the root component), just register your Iconset:
 ```
