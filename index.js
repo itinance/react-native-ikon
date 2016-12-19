@@ -1,29 +1,30 @@
 'use strict';
 
 import React, { Component, PropTypes } from 'react';
-import { Image, Platform } from 'react-native';
+import { Image, Platform, Dimensions } from 'react-native';
+
+const IMG_CENTER_MODE = Platform.OS === 'ios' ? 'center' : 'contain';
 
 class Ikon extends Component {
 
   constructor(props) {
     super(props);
 
-    const {disabled, name, style} = this.props;
+    const {disabled, name, style} = props;
+
+    this.iconSet = __iconSet;
+
+    const resizeMode = props.resizeMode ? props.resizeMode : this.traverseIconSet(name, 'resizeMode');
+    const autoScale = props.autoScale ? props.autoScale : this.traverseIconSet(name, 'autoScale');
+    const width = props.width ? props.width : this.traverseIconSet(name, 'width');
+    const height = props.height ? props.height : this.traverseIconSet(name, 'height');
+    const source = props.source ? props.source : this.traverseIconSet(name, 'source');
 
     let _style = style ? style : {};
-
-    const attr = Ikon.__resolvePropertyByKey(__iconSet, name);
-    if(!attr) {
-      throw 'Attributes for Ikon not found!';
-      return null;
-    }
-
-    const resizeMode = this.props.resizeMode ? this.props.resizeMode : (attr.resizeMode ? attr.resizeMode : IMG_CENTER_MODE);
-
-    _style = [..._style, {width: attr.width, height: attr.height}];
+    _style = [..._style, {width, height}];
 
     if(!!disabled) {
-      let disabledStyle = Ikon.__resolvePropertyByKey(__iconSet, `${name}.$disabled`);
+      let disabledStyle = this.traverseIconSet(name, '$disabled')
       if(!disabledStyle) {
         disabledStyle = {opacity: 0.5};
       }
@@ -33,12 +34,13 @@ class Ikon extends Component {
     this.state = {
         style: _style,
         resizeMode: resizeMode ? resizeMode : IMG_CENTER_MODE,
-        width: attr.width,
-        height: attr.height,
-        source: attr.source,
+        width: autoScale ? Ikon.__normalize(width) : width,
+        height: autoScale ? Ikon.__normalize(height) : height,
+        source: source,
     }
   }
 
+  // register an IconSet
   static registerIconSet(iconSet) {
       __iconSet = iconSet;
   }
@@ -51,22 +53,48 @@ class Ikon extends Component {
     )
   }
 
+  // try to find a value while traversing up the iconSet structure
+  traverseIconSet(name, property) {
+    let obj = Ikon.__resolvePropertyByKey(this.iconSet, name);
+    while(obj) {
+      if(obj[property]) {
+        return obj[property];
+      }
+
+      const p = name.lastIndexOf('.');
+      if(!p) return null;
+      name = name.substr(0, p);
+      obj = Ikon.__resolvePropertyByKey(this.iconSet, name);
+    }
+    return null;
+  }
+
+  // traverse down a nested object to resolve the 'path'
   static __resolvePropertyByKey(obj, path) {
       return path.split('.').reduce(function(prev, curr) {
           return prev ? prev[curr] : undefined
-      }, obj || self)
+      }, obj)
+  }
+
+  static __normalize(value : number) {
+    console.log(value, __scale, Math.round(__scale * value));
+    return Math.round(__scale * value);
   }
 
 }
 
+// AutoScale-factor
+const __scale = Dimensions ? Dimensions.get('window').width / 375 : 1;
+
 // global iconSet
 // assign your personal IconSet with Ikon.registerIconSet()
-var __iconSet = null;
+let __iconSet = null;
 
 Ikon.propTypes = {
   name: PropTypes.string.isRequired,
   style: PropTypes.object,
   resizeMode: PropTypes.string,
+  autoScale: PropTypes.boolean,
 }
 
 Ikon.defaultProps = {
