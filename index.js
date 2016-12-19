@@ -16,8 +16,13 @@ class Ikon extends Component {
 
     const resizeMode = props.resizeMode ? props.resizeMode : this.traverseIconSet(name, 'resizeMode');
     const autoScale = props.autoScale ? props.autoScale : this.traverseIconSet(name, 'autoScale');
-    const width = props.width ? props.width : this.traverseIconSet(name, 'width');
-    const height = props.height ? props.height : this.traverseIconSet(name, 'height');
+
+    const doScale = (value) => {
+      return autoScale ? Ikon.__normalize(value) : value;
+    }
+
+    const width = doScale( props.width ? props.width : this.traverseIconSet(name, 'width') );
+    const height = doScale( props.height ? props.height : this.traverseIconSet(name, 'height') );
     const source = props.source ? props.source : this.traverseIconSet(name, 'source');
 
     let _style = style ? style : {};
@@ -34,9 +39,9 @@ class Ikon extends Component {
     this.state = {
         style: _style,
         resizeMode: resizeMode ? resizeMode : IMG_CENTER_MODE,
-        width: autoScale ? Ikon.__normalize(width) : width,
-        height: autoScale ? Ikon.__normalize(height) : height,
-        source: source,
+        width,
+        height,
+        source
     }
   }
 
@@ -83,7 +88,6 @@ class Ikon extends Component {
 
 }
 
-// AutoScale-factor
 const __scale = Dimensions ? Dimensions.get('window').width / 375 : 1;
 
 // global iconSet
