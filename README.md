@@ -17,7 +17,7 @@ json based object structure:
 <Ikon name="themes.default.lessons"/>
 ```
 
-The render-function of <Ikon> will look up an IconSet-structure to pick relevant values
+The render-function of `<Ikon>` will look up an IconSet-structure to pick relevant values
 like 'width' and 'height' by the name that was passed to the Ikon-component.
 If these attributes are not present, it will traverse up the IconSet-structure
 unless the attribute could be found. This way, nested groups are supported and
@@ -57,7 +57,7 @@ export const iconSet = {
 
 ## How to use:
 Somewhere in the code (e.g. the root component), just register the IconSet:
-```
+```javascript
 import {iconSet} from './iconSet';
 import Ikon from 'react-native-ikon';
 
@@ -65,19 +65,19 @@ Ikon.registerIconSet(iconSet);
 ```
 
 In the render-functions:
-```
+```javascript
 <Ikon name="lessons.openLesson" />
 ```
 
 ## Special mode: "disabled" icons
 
 It is also possible to specify an icon as "disabled":
-```
+```javascript
 <Ikon name="lessons.openLesson" disabled={true} />
 ```
 
 If disabled, it will look up a specific node in the iconSet with the name "$.disabled"
-and apply all their attributes to the <Image>-component.
+and apply all their attributes to the `<Image>`-component.
 If $disabled was not found, it will default to an opacity of 0.5.
 
 
@@ -89,7 +89,7 @@ screensize in the same way like Facebook [did it in f8app](https://github.com/fb
 
 ## Properties
 
-The following props are supported being passed into the <Icon>-Tag, where they do
+The following props are supported being passed into the < Icon >-Tag, where they do
 override any settings in the IconSet-Structure.
 
 - width
