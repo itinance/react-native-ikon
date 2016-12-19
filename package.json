@@ -1,0 +1,21 @@
+{
+  "name": "react-native-ikon",
+  "version": "0.0.1",
+  "description": "flexible IconSets for react-native",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itinance/react-native-ikon"
+  },
+  "keywords": [
+    "react-component",
+    "react-native",
+    "ios",
+    "android",
+    "icon",
+    "icons",
+    "iconset"
+  ],
+  "author": "Hagen Huebel <hagen.huebel@gmail.com> (https://github.com/itinance)",
+  "license": "MIT"
+}
