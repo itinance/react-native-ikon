@@ -76,7 +76,7 @@ It is also possible to specify an icon as "disabled":
 <Ikon name="lessons.openLesson" disabled={true} />
 ```
 
-If disabled, it will loop up a specific node in the iconSet with the name "$.disabled"
+If disabled, it will look up a specific node in the iconSet with the name "$.disabled"
 and apply all their attributes to the <Image>-component.
 If $disabled was not found, it will default to an opacity of 0.5.
 
