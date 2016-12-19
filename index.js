@@ -82,7 +82,6 @@ class Ikon extends Component {
   }
 
   static __normalize(value : number) {
-    console.log(value, __scale, Math.round(__scale * value));
     return Math.round(__scale * value);
   }
 
