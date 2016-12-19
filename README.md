@@ -24,7 +24,7 @@ unless the attribute could be found. This way, nested groups are supported and
 will read inherited values from their parent.
 
 ## Example of an iconSet:
-```
+```javascript
 export const iconSet = {
   themes:
     default:
@@ -41,7 +41,7 @@ export const iconSet = {
         openLesson: {
           source: require('./img/icon-open.png'),
         },
-        // specific icon 
+        // specific icon
         closeLesson: {
           source: require('./src/img/icon-close.png'),
         },
