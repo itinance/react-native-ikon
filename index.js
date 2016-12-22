@@ -97,7 +97,7 @@ Ikon.propTypes = {
   name: PropTypes.string.isRequired,
   style: PropTypes.object,
   resizeMode: PropTypes.string,
-  autoScale: PropTypes.boolean,
+  autoScale: PropTypes.bool,
 }
 
 Ikon.defaultProps = {
