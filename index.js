@@ -10,6 +10,19 @@ class Ikon extends Component {
   constructor(props) {
     super(props);
 
+    this.iconSet = __iconSet;
+
+    this.state = {
+        style: null,
+        resizeMode: null,
+        width: null,
+        height: null,
+        source: null,
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const props = nextProps;
     const {disabled, name, style} = props;
 
     this.iconSet = __iconSet;
@@ -41,13 +54,13 @@ class Ikon extends Component {
       _style = [..._style, disabledStyle];
     }
 
-    this.state = {
+    this.setState({
         style: _style,
         resizeMode: resizeMode ? resizeMode : IMG_CENTER_MODE,
         width,
         height,
         source
-    }
+    })
   }
 
   // register an IconSet
