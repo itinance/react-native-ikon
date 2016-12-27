@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component, PropTypes } from 'react';
-import { Image, Platform, Dimensions } from 'react-native';
+import { Image, Platform, Dimensions, StyleSheet } from 'react-native';
 
 const IMG_CENTER_MODE = Platform.OS === 'ios' ? 'center' : 'contain';
 
@@ -25,8 +25,8 @@ class Ikon extends Component {
     const height = doScale( props.height ? props.height : this.traverseIconSet(name, 'height') );
     const source = props.source ? props.source : this.traverseIconSet(name, 'source');
 
-    let _style = style ? style : {};
-    _style = [..._style, {width, height}];
+    let _style = style ? StyleSheet.flatten(style) : {};
+    _style = {..._style, width, height};
 
     if(!!disabled) {
       let disabledStyle = this.traverseIconSet(name, '$disabled')
