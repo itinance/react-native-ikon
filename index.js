@@ -100,7 +100,7 @@ let __iconSet = null;
 
 Ikon.propTypes = {
   name: PropTypes.string.isRequired,
-  style: PropTypes.object,
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
   resizeMode: PropTypes.string,
   autoScale: PropTypes.bool,
 }
