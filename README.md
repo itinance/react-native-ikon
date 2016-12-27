@@ -43,7 +43,8 @@ export const iconSet = {
         },
         // specific icon
         closeLesson: {
-          source: require('./src/img/icon-close.png'),
+          source: require('./src/img/icon-open.png'),
+          transform:[{rotate: '180 deg'}],
         },
         help: {
           source: require('./src/img/icon-help.png'),

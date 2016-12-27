@@ -28,6 +28,11 @@ class Ikon extends Component {
     let _style = style ? StyleSheet.flatten(style) : {};
     _style = {..._style, width, height};
 
+    const transform = this.traverseIconSet(name, 'transform');
+    if(transform) {
+      _style = {..._style, transform};
+    }
+
     if(!!disabled) {
       let disabledStyle = this.traverseIconSet(name, '$disabled')
       if(!disabledStyle) {
