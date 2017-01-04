@@ -5,7 +5,7 @@ import { Image, Platform, Dimensions, StyleSheet } from 'react-native';
 
 const IMG_CENTER_MODE = Platform.OS === 'ios' ? 'center' : 'contain';
 
-class Ikon extends Component {
+export class Ikon extends Component {
 
   constructor(props) {
     super(props);
@@ -22,7 +22,14 @@ class Ikon extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const props = nextProps;
+    this.updateProps(nextProps);
+  }
+
+  componentDidMount() {
+    this.updateProps(this.props);
+  }
+
+  updateProps(props) {
     const {disabled, name, style} = props;
 
     this.iconSet = __iconSet;
@@ -120,5 +127,3 @@ Ikon.propTypes = {
 
 Ikon.defaultProps = {
 }
-
-module.exports = Ikon;
