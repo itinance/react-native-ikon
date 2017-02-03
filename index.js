@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component, PropTypes } from 'react';
-import { Image, Platform, Dimensions, StyleSheet } from 'react-native';
+import { Image, Platform, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 
 const IMG_CENTER_MODE = Platform.OS === 'ios' ? 'center' : 'contain';
 
@@ -33,6 +33,10 @@ export class Ikon extends Component {
     const {disabled, name, style} = props;
 
     this.iconSet = __iconSet;
+
+    if(!this.iconSet) {
+      throw new Error( "[react-native-ikon] Have you forgotten to register your IconSet?" );
+    }
 
     const resizeMode = props.resizeMode ? props.resizeMode : this.traverseIconSet(name, 'resizeMode');
     const autoScale = props.autoScale ? props.autoScale : this.traverseIconSet(name, 'autoScale');
@@ -76,11 +80,24 @@ export class Ikon extends Component {
   }
 
   render() {
-    return (
+    let {onPress, disabled} = this.props;
+
+    const icon = (
       <Image resizeMode={this.state.resizeMode} width={this.state.width} height={this.state.height}
             source={this.state.source} style={this.state.style}>
       </Image>
     )
+
+    if(typeof disabled === 'undefined') disabled = false;
+
+    if(onPress) {
+      return (
+        <TouchableOpacity onPress={onPress} disabled={disabled}>{icon}</TouchableOpacity>
+      )
+    }
+
+    return icon;
+
   }
 
   // try to find a value while traversing up the iconSet structure
