@@ -87,6 +87,17 @@ If disabled, it will look up a specific node in the iconSet with the name "$.dis
 and apply all their attributes to the `<Image>`-component.
 If $disabled was not found, it will default to an opacity of 0.5.
 
+## Make it touchable with "onPress"
+
+It is also possible to encapsulate this icon within a [TouchableOpacity](https://facebook.github.io/react-native/docs/touchableopacity.html) to
+make it like a button:
+```javascript
+<Ikon name="lessons.openLesson" onPress={this.onMyIconPressed} disable={true/false} />
+```
+
+The optional property "disabled" will be passed instead to the TouchableOpacity in this case
+to provide native feeling of a disabled Touchable-component.
+
 ## AutoScaling
 
 If the attribute *autoScale* is true, the width and height will be automatically adjusted to the
