@@ -23,6 +23,11 @@ If these attributes are not present, it will traverse up the IconSet-structure
 unless the attribute could be found. This way, nested groups are supported and
 will read inherited values from their parent.
 
+## ChangeLog
+
+0.1.2 -> Property "onPress" (optional) added to provide button-functionality
+0.1.1 -> fix for redux (if used)
+
 ## Example of an iconSet:
 ```javascript
 export const iconSet = {
@@ -81,7 +86,6 @@ If disabled, it will look up a specific node in the iconSet with the name "$.dis
 and apply all their attributes to the `<Image>`-component.
 If $disabled was not found, it will default to an opacity of 0.5.
 
-
 ## AutoScaling
 
 If the attribute *autoScale* is true, the width and height will be automatically adjusted to the
@@ -99,3 +103,4 @@ override any settings in the IconSet-Structure.
 - autoScale
 - [style](https://facebook.github.io/react-native/docs/image.html#source)
 - [source](https://facebook.github.io/react-native/docs/image.html#source)
+- onPress (when present, the icon is encapsulated within a TouchableOpacity passing this onPress-handler)

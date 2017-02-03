@@ -14,7 +14,8 @@
     "android",
     "icon",
     "icons",
-    "iconset"
+    "iconset",
+    "image"
   ],
   "author": "Hagen Huebel <hagen.huebel@gmail.com> (https://github.com/itinance)",
   "license": "MIT"
