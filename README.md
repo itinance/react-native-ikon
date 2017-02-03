@@ -26,6 +26,7 @@ will read inherited values from their parent.
 ## ChangeLog
 
 0.1.2 -> Property "onPress" (optional) added to provide button-functionality
+
 0.1.1 -> fix for redux (if used)
 
 ## Example of an iconSet:
