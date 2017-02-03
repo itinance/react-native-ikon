@@ -109,10 +109,22 @@ screensize in the same way like Facebook [did it in f8app](https://github.com/fb
 The following props are supported being passed into the < Icon >-Tag, where they do
 override any settings in the IconSet-Structure.
 
-- width
-- height
+- [width](https://facebook.github.io/react-native/docs/layout-props.html#width) (number)
+- [height](https://facebook.github.io/react-native/docs/layout-props.html#height) (number)
 - [resizeMode](https://facebook.github.io/react-native/docs/image.html#resizemode)
-- autoScale
+- autoScale (boolean)
 - [style](https://facebook.github.io/react-native/docs/image.html#source)
 - [source](https://facebook.github.io/react-native/docs/image.html#source)
-- onPress (when present, the icon is encapsulated within a TouchableOpacity passing this onPress-handler)
+- [onPress](https://facebook.github.io/react-native/docs/touchablewithoutfeedback.html#onpress) (when present, the icon is encapsulated within a TouchableOpacity passing this onPress-handler)
+
+## Contribution:
+
+Contributors are welcome! Feel free to submit pull requests or open [discussions](https://github.com/itinance/react-native-ikon/issues).
+
+## Author
+
+Hagen Hübel, Munich/Starnberg, Germany
+
+Fullstack developer, currently massive ReactNative developer & consultant
+
+[LinkedIn](https://www.linkedin.com/in/hagenhuebel)
