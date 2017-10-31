@@ -1,6 +1,7 @@
 'use strict';
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Image, Platform, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 
 const IMG_CENTER_MODE = Platform.OS === 'ios' ? 'center' : 'contain';
