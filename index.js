@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Image, Platform, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 
 const IMG_CENTER_MODE = Platform.OS === 'ios' ? 'center' : 'contain';
@@ -134,13 +134,3 @@ const __scale = Dimensions ? Dimensions.get('window').width / 375 : 1;
 // global iconSet
 // assign your personal IconSet with Ikon.registerIconSet()
 let __iconSet = null;
-
-Ikon.propTypes = {
-  name: PropTypes.string.isRequired,
-  style: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
-  resizeMode: PropTypes.string,
-  autoScale: PropTypes.bool,
-}
-
-Ikon.defaultProps = {
-}
